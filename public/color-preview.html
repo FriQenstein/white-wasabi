@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>White Wasabi — Color Preview</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: #121212;
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    padding: 60px 24px;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-align: center;
+  }
+
+  .swatches {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .swatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .square {
+    width: 180px;
+    height: 180px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .label {
+    text-align: center;
+  }
+
+  .name {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .hex {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+    margin-top: 2px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Colors picked from the White Wasabi logo</h1>
+
+<div class="swatches">
+  <div class="swatch">
+    <div class="square" style="background:#D0631E;"></div>
+    <div class="label">
+      <div class="name">Orange</div>
+      <div class="hex">#D0631E</div>
+    </div>
+  </div>
+
+  <div class="swatch">
+    <div class="square" style="background:#031D36;"></div>
+    <div class="label">
+      <div class="name">Dark Blue</div>
+      <div class="hex">#031D36</div>
+    </div>
+  </div>
+
+  <div class="swatch">
+    <div class="square" style="background:#6A99A3;"></div>
+    <div class="label">
+      <div class="name">Lighter Blue</div>
+      <div class="hex">#6A99A3</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
