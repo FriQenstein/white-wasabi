@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>White Wasabi — Sushi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --wasabi: #7FB238;
+    --wasabi-dark: #5C8A22;
+    --coral: #E8503A;
+    --ink: #121212;
+    --ink-soft: #1D1D1B;
+    --cream: #F5F1E8;
+    --white: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.7;
+    cursor: url('images/cursor-chopsticks.svg') 10 33, auto;
+  }
+
+  h1, h2, h3, .display {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    line-height: 1.1;
+  }
+
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+  img { max-width: 100%; display: block; }
+
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.35em;
+    font-size: 0.72rem;
+    font-weight: 500;
+  }
+
+  .thin-line {
+    width: 40px;
+    height: 1px;
+    background: var(--wasabi);
+    margin: 22px auto;
+  }
+
+  /* ---------- Nav ---------- */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 26px 0;
+    background: transparent;
+    transition: background 0.35s, padding 0.35s;
+  }
+
+  .nav.scrolled {
+    background: rgba(18,18,18,0.92);
+    padding: 14px 0;
+    backdrop-filter: blur(6px);
+  }
+
+  .nav .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .logo-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid rgba(255,255,255,0.35);
+  }
+
+  .logo-text {
+    color: var(--white);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.85);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--wasabi); }
+
+  .nav-cta {
+    border: 1px solid rgba(255,255,255,0.5);
+    padding: 9px 20px;
+  }
+
+  .nav-cta:hover { border-color: var(--wasabi); }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: var(--ink);
+    background-image: url('images/logo-mark.jpg');
+    background-position: center 40%;
+    background-repeat: no-repeat;
+    background-size: 780px;
+    background-blend-mode: luminosity;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(18,18,18,0.55) 0%, rgba(18,18,18,0.75) 55%, rgba(18,18,18,0.95) 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    color: var(--white);
+    padding: 0 24px;
+  }
+
+  .hero .eyebrow { color: var(--wasabi); }
+
+  .hero h1 {
+    font-size: clamp(3.4rem, 9vw, 6.4rem);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 18px 0 6px;
+  }
+
+  .hero .tagline {
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 28px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 15px 32px;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 500;
+    transition: all 0.25s;
+  }
+
+  .btn-ghost-light { border: 1px solid rgba(255,255,255,0.55); color: var(--white); }
+  .btn-ghost-light:hover { background: var(--white); color: var(--ink); }
+
+  .btn-solid { background: var(--wasabi); color: var(--white); }
+  .btn-solid:hover { background: var(--wasabi-dark); }
+
+  .btn-ghost-dark { border: 1px solid var(--ink); color: var(--ink); }
+  .btn-ghost-dark:hover { background: var(--ink); color: var(--white); }
+
+  .scroll-cue {
+    position: absolute;
+    bottom: 34px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    color: rgba(255,255,255,0.6);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .scroll-cue::after {
+    content: "";
+    width: 1px;
+    height: 34px;
+    background: rgba(255,255,255,0.5);
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  /* ---------- Section ---------- */
+  .section { padding: 120px 0; }
+  .section-dark { background: var(--ink); color: var(--white); }
+
+  .section-head {
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto 64px;
+  }
+
+  .section-head .eyebrow { color: var(--wasabi); }
+  .section-head h2 { font-size: clamp(2.2rem, 5vw, 3.2rem); margin-top: 8px; }
+  .section-dark .section-head p { color: rgba(255,255,255,0.65); }
+  .section:not(.section-dark) .section-head p { color: #555; margin-top: 8px; }
+
+  /* ---------- Philosophy / intro ---------- */
+  .philosophy {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .philosophy p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.6rem;
+    color: #333;
+  }
+
+  /* ---------- Menu (editorial list) ---------- */
+  .menu-editorial {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .menu-category {
+    padding: 36px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .menu-category h3 {
+    font-size: 2rem;
+    font-style: italic;
+  }
+
+  .menu-category p {
+    font-size: 0.85rem;
+    color: #666;
+    max-width: 320px;
+    text-align: right;
+  }
+
+  .menu-cta { text-align: center; margin-top: 52px; }
+
+  /* ---------- Order band ---------- */
+  .order-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.12);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .order-item {
+    background: var(--ink);
+    padding: 48px 30px;
+    text-align: center;
+  }
+
+  .order-item h3 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+
+  .order-item p {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 22px;
+  }
+
+  /* ---------- Location ---------- */
+  .location-center {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto 56px;
+  }
+
+  .location-center .info-row {
+    margin-bottom: 22px;
+  }
+
+  .location-center h4 {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--wasabi);
+    margin-bottom: 8px;
+  }
+
+  .location-center p { color: #444; }
+
+  .map-frame {
+    max-width: 900px;
+    margin: 0 auto;
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 10px;
+    background: var(--white);
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 60px 0 30px;
+  }
+
+  footer .logo-img { margin: 0 auto 18px; width: 46px; height: 46px; }
+  footer .logo-text { display: block; margin-bottom: 22px; }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+
+  .footer-links a { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; }
+  .footer-links a:hover { color: var(--wasabi); }
+
+  footer .copyright { font-size: 0.75rem; color: rgba(255,255,255,0.35); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    .order-list { grid-template-columns: 1fr; }
+    .menu-category { flex-direction: column; gap: 8px; }
+    .menu-category p { text-align: left; }
+  }
+
+  @media (max-width: 700px) {
+    .nav-links {
+      position: fixed;
+      top: 0; right: 0; bottom: 0;
+      width: 240px;
+      background: var(--ink);
+      flex-direction: column;
+      justify-content: center;
+      gap: 30px;
+      transform: translateX(100%);
+      transition: transform 0.3s;
+    }
+    .nav-links.open { transform: translateX(0); }
+    .nav-toggle { display: block; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav" id="siteNav">
+  <div class="container">
+    <a href="#" class="logo-link">
+      <img src="images/logo-mark.jpg" alt="White Wasabi logo" class="logo-img">
+      <span class="logo-text">White Wasabi</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#menu">Menu</a>
+      <a href="#order">Order</a>
+      <a href="#location">Location</a>
+      <a href="#order" class="nav-cta">Order Online</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">&#9776;</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <span class="eyebrow">Katy, Texas</span>
+    <h1>White Wasabi</h1>
+    <div class="tagline">[Placeholder] Taste the art of sushi</div>
+    <div class="hero-actions">
+      <a href="#menu" class="btn btn-ghost-light">View Menu</a>
+      <a href="#order" class="btn btn-solid">Order Online</a>
+    </div>
+  </div>
+  <div class="scroll-cue">Scroll</div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="philosophy">
+      <span class="eyebrow" style="color:var(--wasabi)">Our Approach</span>
+      <p>"[Placeholder quote] — every roll is made to order, every plate meant to be shared, every visit meant to be unhurried."</p>
+      <div class="thin-line"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-dark" id="menu">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">The Menu</span>
+      <h2>What We Serve</h2>
+    </div>
+    <div class="menu-editorial">
+      <div class="menu-category">
+        <h3>Nigiri</h3>
+        <p>Hand-pressed rice, sliced-to-order fish</p>
+      </div>
+      <div class="menu-category">
+        <h3>Rolls</h3>
+        <p>Signature and classic maki, rolled fresh</p>
+      </div>
+      <div class="menu-category">
+        <h3>Sashimi</h3>
+        <p>Chef's daily selection, thick-cut</p>
+      </div>
+      <div class="menu-category">
+        <h3>Starters</h3>
+        <p>Small plates, made for the table</p>
+      </div>
+    </div>
+    <div class="menu-cta">
+      <a href="#" class="btn btn-ghost-light">See Full Menu</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="order">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Dine In &amp; Takeout</span>
+      <h2>However You'd Like It</h2>
+      <p>Relaxed dine-in seating, or order ahead for pickup and delivery.</p>
+    </div>
+  </div>
+  <div class="order-list">
+    <div class="order-item">
+      <h3>Dine In</h3>
+      <p>Walk-ins welcome, tables for the table.</p>
+      <a href="#location" class="btn btn-ghost-light">Find Us</a>
+    </div>
+    <div class="order-item">
+      <h3>Pickup</h3>
+      <p>Order direct, ready when you arrive.</p>
+      <a href="#" class="btn btn-ghost-light">Order Pickup</a>
+    </div>
+    <div class="order-item">
+      <h3>Delivery</h3>
+      <p>Available on UberEats &amp; GrubHub.</p>
+      <a href="#" class="btn btn-ghost-light">Order Delivery</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="location">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Visit Us</span>
+      <h2>Find White Wasabi</h2>
+    </div>
+    <div class="location-center">
+      <div class="info-row">
+        <h4>Address</h4>
+        <p>6825 S. Fry Road, Katy, TX 77494</p>
+      </div>
+      <div class="info-row">
+        <h4>Phone</h4>
+        <p>[Phone Number]</p>
+      </div>
+      <div class="info-row">
+        <h4>Hours</h4>
+        <p>Mon–Thu 10am–9pm &nbsp;&middot;&nbsp; Fri–Sat 10am–10pm &nbsp;&middot;&nbsp; Sun 12pm–8pm</p>
+      </div>
+    </div>
+    <div class="map-frame">
+      <iframe
+        src="https://www.google.com/maps?q=6825+S.+Fry+Road,+Katy,+TX+77494&output=embed"
+        width="100%" height="360"
+        style="border:0; display:block;"
+        allowfullscreen loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <img src="images/logo-mark.jpg" alt="White Wasabi logo" class="logo-img">
+    <span class="logo-text">White Wasabi</span>
+    <div class="footer-links">
+      <a href="#menu">Menu</a>
+      <a href="#order">Order</a>
+      <a href="#location">Location</a>
+    </div>
+    <div class="copyright">&copy; 2026 White Wasabi. All rights reserved. &middot; Layout concept 3 — moody editorial style</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('navToggle').addEventListener('click', function () {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+
+  var nav = document.getElementById('siteNav');
+  window.addEventListener('scroll', function () {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>White Wasabi — Sushi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --wasabi: #7FB238;
+    --wasabi-dark: #5C8A22;
+    --coral: #E8503A;
+    --charcoal: #1A1A1A;
+    --cream: #FAF7F0;
+    --white: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--charcoal);
+    background: var(--cream);
+    line-height: 1.6;
+    cursor: url('images/cursor-chopsticks.svg') 10 33, auto;
+  }
+
+  h1, h2, h3, .display {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.03em;
+    line-height: 1.05;
+  }
+
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+  img { max-width: 100%; display: block; }
+
+  .container {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- Nav ---------- */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--charcoal);
+    color: var(--white);
+  }
+
+  .nav .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 76px;
+  }
+
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .logo-img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255,255,255,0.2);
+  }
+
+  .nav .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.08em;
+  }
+
+  .nav .logo span { color: var(--wasabi); }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+  }
+
+  .nav-links a {
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--wasabi); }
+
+  .nav-cta {
+    background: var(--coral);
+    color: var(--white) !important;
+    padding: 10px 22px;
+    border-radius: 999px;
+    font-weight: 600;
+  }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.6rem;
+    cursor: pointer;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--wasabi) 0%, var(--wasabi-dark) 55%, var(--charcoal) 100%);
+    color: var(--white);
+    padding: 120px 0 140px;
+  }
+
+  .hero::before,
+  .hero::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+  }
+
+  .hero::before { width: 420px; height: 420px; top: -180px; right: -120px; }
+  .hero::after { width: 260px; height: 260px; bottom: -140px; left: -80px; background: rgba(232,80,58,0.25); }
+
+  .hero .container { position: relative; z-index: 2; }
+
+  .hero-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 18px;
+    animation: fadeUp 0.7s ease-out both;
+  }
+
+  .hero h1 {
+    font-size: clamp(3.2rem, 9vw, 7rem);
+    max-width: 780px;
+    animation: fadeUp 0.7s ease-out 0.1s both;
+  }
+
+  .hero p {
+    max-width: 480px;
+    font-size: 1.1rem;
+    margin-top: 20px;
+    color: rgba(255,255,255,0.92);
+    animation: fadeUp 0.7s ease-out 0.2s both;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    margin-top: 36px;
+    flex-wrap: wrap;
+    animation: fadeUp 0.7s ease-out 0.3s both;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  .btn:hover { transform: translateY(-2px); }
+
+  .btn-primary {
+    background: var(--coral);
+    color: var(--white);
+    box-shadow: 0 10px 24px rgba(232,80,58,0.35);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid rgba(255,255,255,0.6);
+  }
+
+  .btn-dark {
+    background: var(--charcoal);
+    color: var(--white);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ---------- Section heading ---------- */
+  .section { padding: 100px 0; }
+  .section-alt { background: var(--white); }
+
+  .section-head {
+    text-align: center;
+    max-width: 620px;
+    margin: 0 auto 56px;
+  }
+
+  .section-head .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--coral);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .section-head h2 {
+    font-size: clamp(2.4rem, 5vw, 3.4rem);
+  }
+
+  .section-head p {
+    margin-top: 14px;
+    color: #555;
+  }
+
+  /* ---------- Menu preview ---------- */
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .menu-card {
+    background: var(--cream);
+    border-radius: 18px;
+    padding: 32px 24px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .menu-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.08);
+  }
+
+  .menu-card .icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--wasabi);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin: 0 auto 18px;
+  }
+
+  .menu-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+  }
+
+  .menu-card p {
+    font-size: 0.92rem;
+    color: #666;
+  }
+
+  .menu-cta { text-align: center; margin-top: 48px; }
+
+  /* ---------- Atmosphere / dine-in split ---------- */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .split-image {
+    aspect-ratio: 4/3;
+    border-radius: 24px;
+    background: repeating-linear-gradient(135deg, #ddd, #ddd 18px, #e8e8e8 18px, #e8e8e8 36px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .split h2 { font-size: clamp(2.2rem, 4.5vw, 3rem); margin-bottom: 20px; }
+  .split p { color: #555; margin-bottom: 16px; }
+
+  /* ---------- Order online ---------- */
+  .order-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .order-card {
+    border-radius: 20px;
+    padding: 40px 28px;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .order-card:nth-child(1) { background: linear-gradient(160deg, #FF8000, #E8503A); }
+  .order-card:nth-child(2) { background: linear-gradient(160deg, #06C167, #049151); }
+  .order-card:nth-child(3) { background: linear-gradient(160deg, var(--wasabi), var(--wasabi-dark)); }
+
+  .order-card h3 { font-size: 1.7rem; }
+  .order-card p { font-size: 0.92rem; opacity: 0.92; }
+
+  .order-card .btn { align-self: flex-start; margin-top: auto; }
+
+  /* ---------- Location ---------- */
+  .location-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 56px;
+  }
+
+  .info-list { margin-top: 24px; display: flex; flex-direction: column; gap: 22px; }
+
+  .info-item { display: flex; gap: 16px; align-items: flex-start; }
+
+  .info-item .icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--wasabi);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .info-item h4 { font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+  .info-item p { color: #555; font-size: 0.95rem; }
+
+  .map-placeholder {
+    border-radius: 20px;
+    background: #e4e4e4;
+    min-height: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-weight: 600;
+    text-align: center;
+    padding: 20px;
+    border: 2px dashed #bbb;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    background: var(--charcoal);
+    color: rgba(255,255,255,0.8);
+    padding: 56px 0 28px;
+  }
+
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .footer-logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .footer-logo-img {
+    border-color: rgba(255,255,255,0.15);
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    color: var(--white);
+  }
+
+  .footer-logo span { color: var(--wasabi); }
+
+  .footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
+  .footer-links a:hover { color: var(--wasabi); }
+
+  .footer-bottom {
+    padding-top: 24px;
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    .menu-grid { grid-template-columns: repeat(2, 1fr); }
+    .split { grid-template-columns: 1fr; }
+    .order-grid { grid-template-columns: 1fr; }
+    .location-wrap { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 700px) {
+    .nav-links { position: fixed; top: 76px; left: 0; right: 0; background: var(--charcoal); flex-direction: column; padding: 24px; gap: 20px; transform: translateY(-150%); transition: transform 0.25s; }
+    .nav-links.open { transform: translateY(0); }
+    .nav-toggle { display: block; }
+    .menu-grid { grid-template-columns: 1fr; }
+    .hero { padding: 90px 0 100px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container">
+    <a href="#" class="logo-link">
+      <img src="images/logo-mark.jpg" alt="White Wasabi logo" class="logo-img">
+      <span class="logo">White<span>Wasabi</span></span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#menu">Menu</a>
+      <a href="#atmosphere">Dine-In</a>
+      <a href="#order">Order</a>
+      <a href="#location">Location</a>
+      <a href="#order" class="nav-cta">Order Online</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">&#9776;</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <span class="hero-eyebrow">Fresh &middot; Handcrafted &middot; Local</span>
+    <h1>Sushi worth<br>slowing down for.</h1>
+    <p>[Tagline placeholder] — a relaxed dining room, hand-rolled sushi, and a menu built for sharing. Dine in, or take it to go.</p>
+    <div class="hero-actions">
+      <a href="#menu" class="btn btn-primary">View Menu</a>
+      <a href="#order" class="btn btn-outline">Order Online</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="menu">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">The Menu</span>
+      <h2>A little bit of everything</h2>
+      <p>[Placeholder copy] From classic nigiri to inventive rolls, every plate is made fresh to order.</p>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <div class="icon">&#127843;</div>
+        <h3>Nigiri</h3>
+        <p>Hand-pressed rice, sliced-to-order fish</p>
+      </div>
+      <div class="menu-card">
+        <div class="icon">&#127820;</div>
+        <h3>Rolls</h3>
+        <p>Signature and classic maki rolls</p>
+      </div>
+      <div class="menu-card">
+        <div class="icon">&#129457;</div>
+        <h3>Sashimi</h3>
+        <p>Thick-cut, chef's daily selection</p>
+      </div>
+      <div class="menu-card">
+        <div class="icon">&#127857;</div>
+        <h3>Starters</h3>
+        <p>Small plates to share at the table</p>
+      </div>
+    </div>
+    <div class="menu-cta">
+      <a href="#" class="btn btn-dark">See Full Menu</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="atmosphere">
+  <div class="container">
+    <div class="split">
+      <div class="split-image">Dining room photo placeholder</div>
+      <div>
+        <h2>Come sit, stay a while</h2>
+        <p>[Placeholder copy] White Wasabi's dining room is built for slowing down — good company, good sushi, no rush.</p>
+        <p>Dine-in tables available, walk-ins welcome.</p>
+        <a href="#location" class="btn btn-primary">Find Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="order">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Takeout &amp; Delivery</span>
+      <h2>Order it your way</h2>
+      <p>Pick it up yourself, or have it delivered through your favorite app.</p>
+    </div>
+    <div class="order-grid">
+      <div class="order-card">
+        <h3>UberEats</h3>
+        <p>Delivered to your door.</p>
+        <a href="#" class="btn btn-dark">Order on UberEats</a>
+      </div>
+      <div class="order-card">
+        <h3>GrubHub</h3>
+        <p>Delivered to your door.</p>
+        <a href="#" class="btn btn-dark">Order on GrubHub</a>
+      </div>
+      <div class="order-card">
+        <h3>Pickup</h3>
+        <p>Order direct, skip the fees.</p>
+        <a href="#" class="btn btn-dark">Order for Pickup</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="location">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Visit Us</span>
+      <h2>Find White Wasabi</h2>
+    </div>
+    <div class="location-wrap">
+      <div>
+        <div class="info-list">
+          <div class="info-item">
+            <div class="icon">&#128205;</div>
+            <div>
+              <h4>Address</h4>
+              <p>6825 S. Fry Road<br>Katy, TX 77494</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="icon">&#128222;</div>
+            <div>
+              <h4>Phone</h4>
+              <p>[Phone Number]</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="icon">&#128337;</div>
+            <div>
+              <h4>Hours</h4>
+              <p>Mon–Thu: 10am–9pm<br>Fri–Sat: 10am–10pm<br>Sun: 12pm–8pm</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <iframe
+        class="map-embed"
+        src="https://www.google.com/maps?q=6825+S.+Fry+Road,+Katy,+TX+77494&output=embed"
+        width="100%" height="380"
+        style="border:0; border-radius:20px;"
+        allowfullscreen loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-logo-wrap">
+        <img src="images/logo-mark.jpg" alt="White Wasabi logo" class="logo-img footer-logo-img">
+        <div class="footer-logo">White<span>Wasabi</span></div>
+      </div>
+      <div class="footer-links">
+        <a href="#menu">Menu</a>
+        <a href="#atmosphere">Dine-In</a>
+        <a href="#order">Order</a>
+        <a href="#location">Location</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 White Wasabi. All rights reserved.</span>
+      <span>Layout concept 1 — "Bondi" style</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('navToggle').addEventListener('click', function () {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+</script>
+
+</body>
+</html>
