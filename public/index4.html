@@ -272,6 +272,46 @@
     color: #333;
   }
 
+  /* ---------- Chef gallery (horizontal scroll) ---------- */
+  .gallery-hint {
+    text-align: center;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #999;
+    margin-top: -36px;
+    margin-bottom: 40px;
+  }
+
+  .gallery-scroll {
+    display: flex;
+    gap: 18px;
+    overflow-x: auto;
+    padding: 4px 24px 20px;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .gallery-item {
+    flex: 0 0 auto;
+    width: 300px;
+    aspect-ratio: 4 / 3;
+    scroll-snap-align: start;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (max-width: 700px) {
+    .gallery-item { width: 78vw; }
+  }
+
   /* ---------- Menu (editorial list) ---------- */
   .menu-editorial {
     max-width: 760px;
@@ -445,6 +485,35 @@
       <div class="thin-line"></div>
     </div>
   </div>
+</section>
+
+<section class="section" id="gallery">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Fresh Today</span>
+      <h2>From the Chef</h2>
+    </div>
+  </div>
+  <p class="gallery-hint">Scroll to see more &rarr;</p>
+  <div class="gallery-scroll">
+    <div class="gallery-item"><img src="images/gallery/nigiri-plate.jpg" alt="Assorted tuna and salmon nigiri" loading="lazy"></div>
+    <div class="gallery-item"><img src="images/gallery/colorful-sushi-lunch.jpg" alt="Sashimi and sushi roll platter" loading="lazy"></div>
+    <div class="gallery-item"><img src="images/gallery/kamatoro-otoro-nigiri.jpg" alt="Fatty tuna nigiri selection" loading="lazy"></div>
+    <div class="gallery-item"><img src="images/gallery/chef-sushi.jpg" alt="Garnished sashimi and sushi platter" loading="lazy"></div>
+    <div class="gallery-item"><img src="images/gallery/tuna-nigiri.jpg" alt="Fresh tuna nigiri tray" loading="lazy"></div>
+    <div class="gallery-item"><img src="images/gallery/eight-types-sushi.jpg" alt="Assorted sushi roll tray" loading="lazy"></div>
+  </div>
+  <!--
+    Stock photos, temporary until real chef photos are available. Source: Wikimedia Commons.
+    - nigiri-plate.jpg: Gatorfan252525, CC BY-SA 4.0
+    - kamatoro-otoro-nigiri.jpg: Gatorfan252525, CC BY-SA 4.0
+    - tuna-nigiri.jpg: Gatorfan252525, CC BY-SA 4.0
+    - chef-sushi.jpg: Chefpsalima, CC BY-SA 4.0
+    - colorful-sushi-lunch.jpg: Robbie Vize, CC BY 3.0
+    - eight-types-sushi.jpg: HuangWending18072009, CC0
+    Remove this comment and the credit line below once replaced with real photos.
+  -->
+  <p class="gallery-hint" style="margin-top:16px;">Photos: Wikimedia Commons contributors (CC BY-SA / CC BY)</p>
 </section>
 
 <section class="section section-dark" id="menu">
