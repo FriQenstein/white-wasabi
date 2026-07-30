@@ -100,7 +100,7 @@
   }
 
   .logo-text {
-    color: var(--white);
+    color: var(--orange);
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.3rem;
     letter-spacing: 0.12em;
@@ -171,13 +171,12 @@
     padding: 0 24px;
   }
 
-  .hero .eyebrow { color: var(--orange); font-weight: 700; font-size: 1.05rem; }
-
   .hero h1 {
     font-size: clamp(3.4rem, 9vw, 6.4rem);
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    margin: 18px 0 6px;
+    margin: 0 0 6px;
+    color: var(--orange);
   }
 
   .hero .tagline {
@@ -330,14 +329,17 @@
   .menu-category h3 {
     font-size: 2rem;
     font-style: italic;
+    color: var(--orange);
   }
 
   .menu-category p {
     font-size: 0.85rem;
-    color: #666;
+    color: rgba(255,255,255,0.85);
     max-width: 320px;
     text-align: right;
   }
+
+  #menu .section-head h2 { color: var(--orange); }
 
   .menu-cta { text-align: center; margin-top: 52px; }
 
@@ -466,9 +468,8 @@
 
 <section class="hero">
   <div class="hero-content">
-    <span class="eyebrow">Katy, Texas</span>
     <h1>White Wasabi</h1>
-    <div class="tagline">Taste the art of sushi</div>
+    <div class="tagline">Fresh &middot; Crafted &middot; Local</div>
     <div class="hero-actions">
       <a href="#menu" class="btn btn-ghost-light">View Menu</a>
       <a href="#order" class="btn btn-solid">Order Online</a>
@@ -590,7 +591,7 @@
       </div>
       <div class="info-row">
         <h4>Hours</h4>
-        <p>Mon–Thu 10am–9pm &nbsp;&middot;&nbsp; Fri–Sat 10am–10pm &nbsp;&middot;&nbsp; Sun 12pm–8pm</p>
+        <p>Mon–Thu 11am–9pm &nbsp;&middot;&nbsp; Fri–Sat 11am–10pm &nbsp;&middot;&nbsp; Sun 12pm–8pm</p>
       </div>
     </div>
     <div class="map-frame">
