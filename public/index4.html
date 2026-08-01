@@ -100,7 +100,7 @@
   }
 
   .logo-text {
-    color: var(--orange);
+    color: var(--white);
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.3rem;
     letter-spacing: 0.12em;
@@ -133,6 +133,8 @@
 
   .nav-toggle {
     display: none;
+    position: relative;
+    z-index: 300;
     background: none;
     border: none;
     color: var(--white);
@@ -185,6 +187,7 @@
     font-size: 1.4rem;
     color: rgba(255,255,255,0.85);
     margin-bottom: 28px;
+    text-transform: uppercase;
   }
 
   .hero-actions {
@@ -329,17 +332,14 @@
   .menu-category h3 {
     font-size: 2rem;
     font-style: italic;
-    color: var(--orange);
   }
 
   .menu-category p {
     font-size: 0.85rem;
-    color: rgba(255,255,255,0.85);
+    color: #666;
     max-width: 320px;
     text-align: right;
   }
-
-  #menu .section-head h2 { color: var(--orange); }
 
   .menu-cta { text-align: center; margin-top: 52px; }
 
@@ -542,7 +542,7 @@
       </div>
     </div>
     <div class="menu-cta">
-      <a href="#" class="btn btn-solid">See Full Menu</a>
+      <a href="#" class="btn btn-ghost-light">See Full Menu</a>
     </div>
   </div>
 </section>
@@ -559,17 +559,17 @@
     <div class="order-item">
       <h3>Dine In</h3>
       <p>Walk-ins welcome, tables for the table.</p>
-      <a href="#location" class="btn btn-solid">Find Us</a>
+      <a href="#location" class="btn btn-ghost-light">Find Us</a>
     </div>
     <div class="order-item">
       <h3>Pickup</h3>
       <p>Order direct, ready when you arrive.</p>
-      <a href="#" class="btn btn-solid">Order Pickup</a>
+      <a href="#" class="btn btn-ghost-light">Order Pickup</a>
     </div>
     <div class="order-item">
       <h3>Delivery</h3>
       <p>Available on UberEats &amp; GrubHub.</p>
-      <a href="#" class="btn btn-solid">Order Delivery</a>
+      <a href="#" class="btn btn-ghost-light">Order Delivery</a>
     </div>
   </div>
 </section>
@@ -619,8 +619,10 @@
 </footer>
 
 <script>
-  document.getElementById('navToggle').addEventListener('click', function () {
-    document.getElementById('navLinks').classList.toggle('open');
+  var navToggle = document.getElementById('navToggle');
+  navToggle.addEventListener('click', function () {
+    var isOpen = document.getElementById('navLinks').classList.toggle('open');
+    navToggle.innerHTML = isOpen ? '&times;' : '&#9776;';
   });
 
   var nav = document.getElementById('siteNav');
